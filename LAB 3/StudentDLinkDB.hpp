@@ -42,6 +42,8 @@ public:
     StudentDLinkDB();
     void addStudent(int id, const std::string& lastName, const std::string& firstName, const std::string& academicStanding);
     void printList() const;
+    void readFromFile(const std::string& filename); // New method to read from file
+
     void mergeSort();
     ~StudentDLinkDB();
 };

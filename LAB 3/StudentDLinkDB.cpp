@@ -1,4 +1,6 @@
 #include "StudentDLinkDB.hpp"
+#include <fstream>
+#include <sstream>
 #include <iostream>
 
 // Constructor
@@ -90,3 +92,29 @@ Student* StudentDLinkDB::mergeSortHelper(Student* node) {
     // Merge sorted halves
     return merge(leftSorted, rightSorted);
 } 
+
+void StudentDLinkDB::readFromFile(const std::string& filename) {
+    std::ifstream inputFile(filename);
+    
+    if (!inputFile.is_open()) {
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        return;
+    }
+
+    std::string line;
+    
+    while (std::getline(inputFile, line)) {
+        std::istringstream iss(line);
+        
+        int id;
+        std::string lastName, firstName, academicStanding;
+
+        if (iss >> id >> lastName >> firstName >> academicStanding) {
+            addStudent(id, lastName, firstName, academicStanding);
+        } else {
+            std::cerr << "Error: Invalid format in line: " << line << std::endl;
+        }
+    }
+
+    inputFile.close();
+}

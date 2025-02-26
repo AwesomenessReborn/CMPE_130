@@ -12,16 +12,31 @@ int main() {
     db.addStudent(4, "Brown", "Charlie", "Average");
     db.addStudent(2, "Taylor", "Alice", "Poor");
 
-    // Print unsorted list
+    // unsorted
     std::cout << "Unsorted List:" << std::endl;
     db.printList();
 
-    // Perform merge sort on the list
     db.mergeSort();
 
-    // Print sorted list
+    // sorted
     std::cout << "\nSorted List:" << std::endl;
     db.printList();
+    
+    std::cout << "\n\n" << std::endl; 
+
+    // TEST 2 -- input file
+    StudentDLinkDB fileDb; 
+    fileDb.readFromFile("students.txt"); 
+
+    // unsorted
+    std::cout << "Unsorted List:" << std::endl;
+    fileDb.printList(); 
+
+    fileDb.mergeSort(); 
+
+    // sorted
+    std::cout << "\nSorted List:" << std::endl;
+    fileDb.printList(); 
 
     return 0;
 }
